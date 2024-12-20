@@ -1,0 +1,13 @@
+- name: Run specified command
+  hosts: localhost
+  gather_facts: false
+  vars:
+    command_to_run: "{{ environment }}"  # Use the input as the command
+  tasks:
+    - name: Run the command
+      command: "{{ command_to_run }}"
+      register: command_output
+
+    - name: Display command output
+      debug:
+        msg: "Output: {{ command_output.stdout }}"
