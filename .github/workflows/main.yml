@@ -1,0 +1,25 @@
+name: Run Command Based on Environment Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Enter a command (pwd or date)"
+        required: true
+        type: choice
+        options:
+          - pwd
+          - date
+
+jobs:
+  ansible:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Ansible Playbook
+        uses: actions/checkout@v2
+        with:
+          playbook: ./ansible/run_command.yml
+          environment: ${{ inputs.environment }}  # Pass the environment input
