@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    command_to_run: "{{ environment }}"
+    command_to_run: "{{ command_to_run }}"
     user_activity: "{{ user_activity }}"
   tasks:
     - name: Run the command
