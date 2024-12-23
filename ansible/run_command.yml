@@ -2,7 +2,8 @@
   hosts: localhost
   gather_facts: false
   vars:
-    command_to_run: "{{ environment }}"  # Use the input as the command
+    command_to_run: "{{ environment }}"
+    user_activity: "{{ user_activity }}"
   tasks:
     - name: Run the command
       command: "{{ command_to_run }}"
@@ -11,3 +12,7 @@
     - name: Display command output
       debug:
         msg: "Output: {{ command_output.stdout }}"
+
+    - name: Display activity input
+      debug:
+        msg: "Name of the user: {{ user_activity }}"
