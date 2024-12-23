@@ -27,6 +27,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+
+      - name: Set Variables
+        id: set-vars
+        run: |
+          echo "command_to_run=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+          echo "user_activity=${{ github.event.inputs.activity }}" >> $GITHUB_ENV
+
       - name: Run Ansible Playbook
         uses: actions/checkout@v2
         with:
