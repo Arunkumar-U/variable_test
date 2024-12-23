@@ -1,3 +1,4 @@
+
 name: Run Command Based on Environment Input
 
 on:
@@ -10,15 +11,6 @@ on:
         options:
           - pwd
           - date
-          
-      activity:
-        description: "Enter the name"
-        required: true
-        type: choice
-        options:
-          - arun
-          - saravana
-
 
 jobs:
   ansible:
@@ -27,52 +19,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-
-      # - name: Set Variables
-      #   id: set-vars
-      #   run: |
-      #     echo "command_to_run=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-      #     echo "user_activity=${{ github.event.inputs.activity }}" >> $GITHUB_ENV
-
-      # - name: Run Ansible Playbook
-      #   run: |
-      #     ansible-playbook ./ansible/run_command.yml \
-      #       --extra-vars "command_to_run=${{ env.command_to_run }} user_activity=${{ env.user_activity }}"
-
       - name: Run Ansible Playbook
         uses: actions/checkout@v2
         with:
           playbook: ./ansible/run_command.yml
-          environment: ${{ inputs.environment }}
-          
-
-# name: Run Command Based on Environment Input
-
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       environment:
-#         description: "Enter a command (pwd or date)"
-#         required: true
-#         type: choice
-#         options:
-#           - pwd
-#           - date
-
-# jobs:
-#   ansible:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
-#       - name: Run Ansible Playbook
-#         uses: actions/checkout@v2
-#         with:
-#           playbook: ./ansible/run_command.yml
-#           environment: ${{ inputs.environment }}
-          
-           
-
-
-          
+          environment: ${{ inputs.environment }}  # Pass the environment input
