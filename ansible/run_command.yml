@@ -13,6 +13,4 @@
       debug:
         msg: "Output: {{ command_output.stdout }}"
 
-    # - name: Display activity input
-    #   debug:
-    #     msg: "Name of the user: {{ user_activity }}"
+
