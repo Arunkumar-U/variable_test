@@ -2,11 +2,10 @@
   hosts: localhost
   gather_facts: false
   vars:
-    environment: "{{ environment }}"
-    
+    command_to_run: "{{ environment }}"  # Use the input as the command
   tasks:
     - name: Run the command
-      command: "{{ environment }}"
+      command: "{{ command_to_run }}"
       register: command_output
 
     - name: Display command output
