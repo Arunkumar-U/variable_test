@@ -35,12 +35,17 @@ jobs:
           echo "user_activity=${{ github.event.inputs.activity }}" >> $GITHUB_ENV
 
       - name: Run Ansible Playbook
-        uses: actions/checkout@v2
-        with:
-          playbook: ./ansible/run_command.yml
-          extra-vars: |
-            command_to_run=${{ inputs.environment }}
-            user_activity=${{ inputs.activity }}
+        run: |
+          ansible-playbook ./ansible/run_command.yml \
+            --extra-vars "command_to_run=${{ env.command_to_run }} user_activity=${{ env.user_activity }}"
+
+      # - name: Run Ansible Playbook
+      #   uses: actions/checkout@v2
+      #   with:
+      #     playbook: ./ansible/run_command.yml
+      #     extra-vars: |
+      #       command_to_run=${{ inputs.environment }}
+      #       user_activity=${{ inputs.activity }}
 
 
           
